@@ -13,28 +13,28 @@ public class PrestationService {
     @Autowired
     PrestationRepository prestationRepository;
 
-    // CREATED
+    // CREATED (save)
     public void add(Prestation p) {
         prestationRepository.save(p);
     }
 
-    // READ all
+    // READ (findAll)
     public List<Prestation> getAll() {
         return prestationRepository.findAll();
     }
 
-    // READ by id
+    // READ by (findById)
     public Optional<Prestation> findById(Integer id) {
         return prestationRepository.findById(id);
     }
 
-    // UPDATE
+    // UPDATE (save)
     public void update(Prestation p) {
         prestationRepository.save(p);
     }
 
-    // DELETE
-    public void delete(Prestation p) {
-        prestationRepository.delete(p);
+    // DELETE (deleteById)
+    public void delete(Integer id) {
+        prestationRepository.deleteById(id);
     }
 }

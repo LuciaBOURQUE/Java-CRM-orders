@@ -9,16 +9,16 @@ public class Prestation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="type_presta")
+    @Column(name = "type_presta")
     private String typePrestation;
 
     private String description;
 
-    // A changer
-    @Column(name="client_id")
-    private int clientId;
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
-    @Column(name="nbr_days")
+    @Column(name = "nbr_days")
     private int nbrDays;
 
     @Column(name = "unit_price", columnDefinition = "NUMERIC(10,2)")
@@ -35,10 +35,10 @@ public class Prestation {
     public Prestation() {
     }
 
-    public Prestation(String typePrestation, String description, int clientId, int nbrDays, float unitPrice, float totalExcludeTaxe, float totalWithTaxe, int state) {
+    public Prestation(String typePrestation, String description, Client client, int nbrDays, float unitPrice, float totalExcludeTaxe, float totalWithTaxe, int state) {
         this.typePrestation = typePrestation;
         this.description = description;
-        this.clientId = clientId;
+        this.client = client;
         this.nbrDays = nbrDays;
         this.unitPrice = unitPrice;
         this.totalExcludeTaxe = totalExcludeTaxe;
@@ -70,12 +70,12 @@ public class Prestation {
         this.description = description;
     }
 
-    public int getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public int getNbrDays() {
@@ -124,7 +124,7 @@ public class Prestation {
                 "id=" + id +
                 ", typePrestation='" + typePrestation + '\'' +
                 ", description='" + description + '\'' +
-                ", clientId=" + clientId +
+                ", client=" + client +
                 ", nbrDays=" + nbrDays +
                 ", unitPrice=" + unitPrice +
                 ", totalExcludeTaxe=" + totalExcludeTaxe +

@@ -1,7 +1,7 @@
 package com.demo.crm.models;
 
 import jakarta.persistence.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,10 +29,12 @@ public class Client {
 
     private String city;
     private String country;
+
+    @Column(name = "state")
     private int state;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Prestation> prestations;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prestation> prestations = new ArrayList<>();
 
     public Client() {
     }
@@ -138,14 +140,6 @@ public class Client {
         this.state = state;
     }
 
-    public List<Prestation> getPrestations() {
-        return prestations;
-    }
-
-    public void setPrestations(List<Prestation> prestations) {
-        this.prestations = prestations;
-    }
-
     @Override
     public String toString() {
         return "Client{" +
@@ -156,7 +150,7 @@ public class Client {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
-                ", zipCode=" + zipCode +
+                ", zipCode='" + zipCode + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
                 ", state=" + state +

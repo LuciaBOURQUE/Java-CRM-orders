@@ -13,28 +13,28 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
-    // CREATED
+    // CREATED (save)
     public void add(Client c) {
         clientRepository.save(c);
     }
 
-    // READ all
+    // READ (findAll)
     public List<Client> getAll() {
         return clientRepository.findAll();
     }
 
-    // READ by id
+    // READ (findById)
     public Optional<Client> findById(Integer id) {
         return clientRepository.findById(id);
     }
 
-    // UPDATE
+    // UPDATE (save)
     public void update(Client c) {
         clientRepository.save(c);
     }
 
-    // DELETE
-    public void delete(Client c) {
-        clientRepository.delete(c);
+    // DELETE (deleteById)
+    public void delete(Integer id) {
+        clientRepository.deleteById(id);
     }
 }
