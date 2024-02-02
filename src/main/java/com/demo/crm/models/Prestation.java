@@ -9,21 +9,25 @@ public class Prestation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="type_prestation")
+    @Column(name="type_presta")
     private String typePrestation;
 
     private String description;
 
+    // A changer
+    @Column(name="client_id")
+    private int clientId;
+
     @Column(name="nbr_days")
     private int nbrDays;
 
-    @Column(name = "unit_price")
+    @Column(name = "unit_price", columnDefinition = "NUMERIC(10,2)")
     private float unitPrice;
 
-    @Column(name="total_exclude_taxe")
+    @Column(name = "total_exclude_taxe", columnDefinition = "NUMERIC(10,2)")
     private float totalExcludeTaxe;
 
-    @Column(name="total_with_taxe")
+    @Column(name = "total_with_taxe", columnDefinition = "NUMERIC(10,2)")
     private float totalWithTaxe;
 
     private int state;
@@ -31,9 +35,10 @@ public class Prestation {
     public Prestation() {
     }
 
-    public Prestation(String typePrestation, String description, int nbrDays, float unitPrice, float totalExcludeTaxe, float totalWithTaxe, int state) {
+    public Prestation(String typePrestation, String description, int clientId, int nbrDays, float unitPrice, float totalExcludeTaxe, float totalWithTaxe, int state) {
         this.typePrestation = typePrestation;
         this.description = description;
+        this.clientId = clientId;
         this.nbrDays = nbrDays;
         this.unitPrice = unitPrice;
         this.totalExcludeTaxe = totalExcludeTaxe;
@@ -63,6 +68,14 @@ public class Prestation {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public int getNbrDays() {
@@ -111,6 +124,7 @@ public class Prestation {
                 "id=" + id +
                 ", typePrestation='" + typePrestation + '\'' +
                 ", description='" + description + '\'' +
+                ", clientId=" + clientId +
                 ", nbrDays=" + nbrDays +
                 ", unitPrice=" + unitPrice +
                 ", totalExcludeTaxe=" + totalExcludeTaxe +

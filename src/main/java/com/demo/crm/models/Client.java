@@ -23,7 +23,7 @@ public class Client {
     private String address;
 
     @Column(name = "zip_code")
-    private int zipCode;
+    private String zipCode;
 
     private String city;
     private String country;
@@ -32,7 +32,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(String companyName, String firstName, String lastName, String email, String phone, String address, int zipCode, String city, String country, int state) {
+    public Client(String companyName, String firstName, String lastName, String email, String phone, String address, String zipCode, String city, String country, int state) {
         this.companyName = companyName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -101,11 +101,11 @@ public class Client {
         this.address = address;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
