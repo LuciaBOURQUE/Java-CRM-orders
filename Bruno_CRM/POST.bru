@@ -1,0 +1,26 @@
+meta {
+  name: POST
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/clients
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "companyName": "Legrand",
+    "firstName": "Lucia",
+    "lastName": "BOURQUE",
+    "email": "lucia@mail.com",
+    "phone": "0656858433",
+    "address": "41 rue des Vénitiens",
+    "zipCode": "xyz",
+    "city": "Nantes",
+    "country": "France",
+    "state": 0
+  }
+}
