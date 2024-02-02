@@ -2,6 +2,8 @@ package com.demo.crm.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "clients")
 public class Client {
@@ -28,6 +30,9 @@ public class Client {
     private String city;
     private String country;
     private int state;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Prestation> prestations;
 
     public Client() {
     }
@@ -131,6 +136,14 @@ public class Client {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public List<Prestation> getPrestations() {
+        return prestations;
+    }
+
+    public void setPrestations(List<Prestation> prestations) {
+        this.prestations = prestations;
     }
 
     @Override

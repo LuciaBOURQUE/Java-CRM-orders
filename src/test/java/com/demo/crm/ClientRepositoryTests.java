@@ -12,7 +12,7 @@ class ClientRepositoryTests {
 
 	@Test
 	void getClient() {
-		clientDatabase.findAll();
+		clientDatabase.findById(2);
 	}
 
 }
