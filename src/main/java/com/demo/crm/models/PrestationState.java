@@ -1,14 +1,15 @@
 package com.demo.crm.models;
 
-// Sorte de constructeur
-public enum ClientState {
-    ACTIVE(0, "ACTIVE"),
-    INACTIVE(1, "INACTIVE");
+
+public enum PrestationState {
+    CANCELED(0, "CANCELED"),
+    OPTION(1,"OPTION"),
+    CONFIRMED(2, "CONFIRMED");
 
     private final int value;
     private final String label;
 
-    ClientState(int value, String label) {
+    PrestationState(int value, String label) {
         this.value = value;
         this.label = label;
     }
@@ -21,12 +22,12 @@ public enum ClientState {
         return label;
     }
 
-    public static ClientState fromValue(int value) {
-        for (ClientState state : ClientState.values()) {
+    public static PrestationState fromValue(int value) {
+        for (PrestationState state : PrestationState.values()) {
             if (state.value == value) {
                 return state;
             }
         }
-        throw new IllegalArgumentException("Invalid client state value: " + value);
+        throw new IllegalArgumentException("Invalid prestation state value: " + value);
     }
 }

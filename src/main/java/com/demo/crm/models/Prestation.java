@@ -14,36 +14,39 @@ public class Prestation {
 
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
-
     @Column(name = "nbr_days")
     private int nbrDays;
 
     @Column(name = "unit_price", columnDefinition = "NUMERIC(10,2)")
     private float unitPrice;
 
+    @Transient
     @Column(name = "total_exclude_taxe", columnDefinition = "NUMERIC(10,2)")
     private float totalExcludeTaxe;
 
+    @Transient
     @Column(name = "total_with_taxe", columnDefinition = "NUMERIC(10,2)")
     private float totalWithTaxe;
 
-    private int state;
+    @Column(name = "state", columnDefinition = "int4")
+    private PrestationState state;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     public Prestation() {
     }
 
-    public Prestation(String typePrestation, String description, Client client, int nbrDays, float unitPrice, float totalExcludeTaxe, float totalWithTaxe, int state) {
+    public Prestation(String typePrestation, String description, int nbrDays, float unitPrice, float totalExcludeTaxe, float totalWithTaxe, PrestationState state, Client client) {
         this.typePrestation = typePrestation;
         this.description = description;
-        this.client = client;
         this.nbrDays = nbrDays;
         this.unitPrice = unitPrice;
-        this.totalExcludeTaxe = totalExcludeTaxe;
-        this.totalWithTaxe = totalWithTaxe;
+        this.totalExcludeTaxe = unitPrice * nbrDays;
+        this.totalWithTaxe = unitPrice * nbrDays * 1.2F;
         this.state = state;
+        this.client = client;
     }
 
     public Integer getId() {
@@ -70,14 +73,6 @@ public class Prestation {
         this.description = description;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
     public int getNbrDays() {
         return nbrDays;
     }
@@ -95,7 +90,7 @@ public class Prestation {
     }
 
     public float getTotalExcludeTaxe() {
-        return totalExcludeTaxe;
+        return unitPrice * nbrDays;
     }
 
     public void setTotalExcludeTaxe(float totalExcludeTaxe) {
@@ -103,19 +98,27 @@ public class Prestation {
     }
 
     public float getTotalWithTaxe() {
-        return totalWithTaxe;
+        return unitPrice * nbrDays * 1.2F;
     }
 
     public void setTotalWithTaxe(float totalWithTaxe) {
         this.totalWithTaxe = totalWithTaxe;
     }
 
-    public int getState() {
+    public PrestationState getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(PrestationState state) {
         this.state = state;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
